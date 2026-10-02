@@ -1,0 +1,54 @@
+{
+  "name": "dsh-local-plugin-source",
+  "version": "0.1.0",
+  "description": "Local plugin source for DeepSeek Harness Desktop: browse the local plugin folder inside the app and install, update or remove those bundles (本地插件源：在桌面应用内安装/卸载本机插件目录中的插件).",
+  "type": "module",
+  "main": "lib/manager.js",
+  "exports": {
+    ".": {
+      "default": "./lib/manager.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/manager.js",
+    "lib/scan.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [],
+      "external": []
+    }
+  },
+  "keywords": [
+    "dsh-plugin",
+    "dsh",
+    "dsh-bundle",
+    "deepseek-harness",
+    "local-plugins"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

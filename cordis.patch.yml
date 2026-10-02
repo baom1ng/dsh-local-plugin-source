@@ -1,0 +1,18 @@
+# The local plugin source bundle patch: one host row carrying both halves.
+#
+# It lists the local plugin folder inside the app (Settings > Plugins >
+# Local plugins) and installs/removes those bundles through the profile's own
+# Plugin Manager, so a locally developed plugin can be installed at any time
+# without leaving the app.
+#
+# The row names its own entry file, patch-relative: app-boot converts a
+# `./` path to a file URL against this file, which keeps the row independent
+# of how the enclosing package happens to be linked into the profile.
+#
+# Desktop-only on purpose: it is the desktop app's local plugin folder and
+# install surface, so the row is disabled on every other profile — a
+# web/headless run then composes this bundle to nothing.
+- insert:
+    - id: local-plugin-source
+      name: "./lib/manager.js"
+      disabled: !!js "ctx.get('profileContext')?.name !== 'desktop'"
