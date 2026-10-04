@@ -7,8 +7,8 @@
 
 它是为「不想每次找路径、也不想找 Agent」准备的：装一次之后，本机插件随时可以在应用里装回来。
 
-**平台：仅 DeepSeek Harness Desktop。** 它管理的是桌面应用的本地插件目录与安装入口，所以 bundle 补丁里的行带
-`disabled: !!js "ctx.get('profileContext')?.name !== 'desktop'"`——其它配置档中不装载任何东西。
+**平台：任何 profile。** 主力环境是 DeepSeek Harness Desktop，带 Web UI 的 profile 同样可用。
+bundle 补丁里的行**不带 `disabled` 门控**：所有 profile 都会激活它，没有 webserver 时那个页面安静地不出现而已。
 
 ---
 

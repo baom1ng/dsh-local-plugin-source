@@ -9,10 +9,14 @@
 # `./` path to a file URL against this file, which keeps the row independent
 # of how the enclosing package happens to be linked into the profile.
 #
-# Desktop-only on purpose: it is the desktop app's local plugin folder and
-# install surface, so the row is disabled on every other profile — a
-# web/headless run then composes this bundle to nothing.
+# No `disabled` expression, on purpose. The loader evaluates such an expression
+# while it builds the entry tree — before any plugin has applied — so it can only
+# read services that already exist at that moment (app-boot's own, such as
+# `profileContext`). Probing a plugin-provided service like `webServer` therefore
+# evaluates to disabled on every cold start and never recovers, because `refresh()`
+# returns early for a disabled entry until the tree is rebuilt.
+# The host half injects the web surface optionally, so a profile without a
+# webserver activates the row and simply registers no route.
 - insert:
     - id: local-plugin-source
       name: "./lib/manager.js"
-      disabled: !!js "ctx.get('profileContext')?.name !== 'desktop'"

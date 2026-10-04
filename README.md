@@ -7,8 +7,8 @@ that folder inside **Settings → Plugins → Local plugins** and lets you **ins
 
 It exists so locally developed plugins can be installed back at any time without copying absolute paths around or asking the Agent.
 
-**Requirements:** DeepSeek Harness Desktop. Desktop profile only — the bundle row carries
-`disabled: !!js "ctx.get('profileContext')?.name !== 'desktop'"`, so `web` / `headless` / `tui` profiles compose this bundle to nothing.
+**Requirements:** the DeepSeek Harness Desktop app, or any Harness profile with a web UI. The bundle row carries **no `disabled` gate** — it activates
+in every profile, and the page simply stays quiet where no webserver runs.
 
 ---
 
